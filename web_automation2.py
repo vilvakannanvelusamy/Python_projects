@@ -9,7 +9,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import CghromeDriverManager
+from webdriver_manager.chrome import ChromeDriverManager
 
 start_time = time.time()
 print(start_time)
