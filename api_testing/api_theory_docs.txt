@@ -10,4 +10,13 @@ Development phase : Frontend dev > raise request to backend dev and get response
 Tester : To make sure ene to end function that means frontend to backend is working fine.
   (FE give request to BE will provide response.How the FE is showing is called End to End testing).  '''
 
-# simple GET request 
+swagger link : https://fakerestapi.azurewebsites.net/index.html
+
+API Testing Activities: HTTP Methods
+Method	  Activity             Type	                          Purpose	Safety & Idempotency
+GET	        Read	            Retrieve                         data	Safe & Idempotent
+POST	      Create	          Submit new data                  Neither safe nor idempotent
+GET ID	Read (Specific)	      Retrieve one specific record	    Safe & Idempotent
+PUT	    Update / Replace	    Modify an existing record	        Idempotent, but not safe
+DELETE	    Delete	          Remove a record	                  Idempotent, but not safe
+
