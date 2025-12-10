@@ -20,3 +20,63 @@ GET ID	Read (Specific)	      Retrieve one specific record	    Safe & Idempotent
 PUT	    Update / Replace	    Modify an existing record	        Idempotent, but not safe
 DELETE	    Delete	          Remove a record	                  Idempotent, but not safe
 
+Exceptions and Warnings :Term	Description
+
+ConnectTimeout : 	Raised when the client fails to establish a connection to the server within the specified timeout period (e.g., DNS lookup or TCP handshake takes too long).
+ConnectionError:	A base exception raised for critical connection-related errors (like the server being offline, DNS errors, or network unavailability). It includes ConnectTimeout and HTTPError exceptions.
+DependencyWarning:	A specific warning related to required external packages that requests depends on (e.g., urllib3 version issues).
+FileModeWarning	A warning concerning potential issues with file handling, typically advising on best practices when passing file handles as data.
+HTTPError	Raised for an unsuccessful HTTP status code (4XX client error or 5XX server error) when .raise_for_status() is called on a response object.
+JSONDecodeError	Raised when the library attempts to decode a response body as JSON, but the content is invalid JSON.
+ReadTimeout	Raised when the server fails to send data back in a timely manner after a connection has been established.
+RequestException	The base class for all exceptions raised by the requests library. You can catch this single exception to handle all requests errors.
+RequestsDependencyWarning	A synonym for DependencyWarning.
+Timeout	A base exception that covers both ConnectTimeout and ReadTimeout.
+TooManyRedirects	Raised when a request exceeds the maximum number of allowed redirects (default is 30), indicating a potential redirect loop.
+URLRequired	Raised when a request is made without a valid URL.
+
+Core Classes and Models     :   Term	Description
+
+These terms refer to the main objects you interact with in the library.
+PreparedRequest :	An internal model of the request after it has been prepared for transmission. It contains the exact bytes and headers that will be sent over the wire.
+Request :	A simple container object used to prepare the data needed for an HTTP request before it is sent (e.g., URL, method, params, data).
+Response :	The central object returned by calls like requests.get(). It holds the server's response data, including status code, headers, and the body content.
+Session :	A highly recommended object that allows you to persist certain parameters across multiple requests (like cookies, default headers, and connection pooling).
+
+Top-Level API Functions
+
+These are the common functions imported directly from the requests library to perform HTTP verbs.
+Term	Description
+delete(url, **kwargs)	: Sends a DELETE request.
+get(url, **kwargs)	: Sends a GET request (most common).
+head(url, **kwargs)	: Sends a HEAD request (fetches headers only, no body).
+options(url, **kwargs) : 	Sends an OPTIONS request (asks the server what methods are supported).
+patch(url, **kwargs) :	Sends a PATCH request (partial updates).
+post(url, **kwargs)	: Sends a POST request (sends data to create/submit).
+put(url, **kwargs) :	Sends a PUT request (sends data to replace a resource).
+request(method, url, **kwargs) :	The primary function that all other verb functions wrap around. Allows specifying the HTTP method manually (e.g., request('GET', url)).
+session()	: A convenience function to create a new Session object.
+
+Internal Modules and Other Attributes : Term	Description
+
+These are modules and attributes used internally by the library or for utility purposes.
+
+adapters :	Contains transport adapters (like HTTPAdapter) which provide the mechanism to interact with specific protocols (HTTP/HTTPS).
+api	: The module that defines the simple, user-facing API functions like get() and post().
+auth	: Classes and functions for handling various authentication schemes.
+certs :	Logic for handling CA certificates used for SSL verification.
+codes :	A dictionary-like structure providing easy access to HTTP status codes (e.g., requests.codes.ok instead of 200).
+cookies :	Tools for handling and managing HTTP cookies.
+hooks :	Mechanisms to attach callback functions to specific events during a request process.
+logging	:The built-in Python logging infrastructure integration.
+models	: The module where core classes (Request, Response, etc.) are defined.
+sessions	: The module containing the implementation of the Session object.
+status_codes :	A synonym for codes.
+structures :	Data structures used internally, such as CaseInsensitiveDict.
+urllib3	 : The underlying, low-level HTTP client library that requests uses to do the actual network communication.
+utils	: Various utility functions (e.g., handling encoding, parsing links).
+
+Note: Attributes beginning and ending with double underscores (e.g., __version__, __author__) are standard Python magic attributes that define package metadata like version numbers, author information, and module structure.
+
+
+
