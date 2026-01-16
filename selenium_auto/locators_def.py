@@ -32,8 +32,9 @@ driver.find_element(By.CSS_SELECTOR,'input.email[data-testid=royal_email]')   ta
 
 XPATH
 '''
-try:
-    driver.find_element(By.ID, 'search-input').send_keys('sample test cases')
-    time.sleep(10)
-except ElementNotVisibleException as e:
-    print('element not found')
+def xpath_classification():
+    try:
+        driver.find_element(By.ID, 'search-input').send_keys('sample test cases')
+        time.sleep(10)
+    except ElementNotVisibleException as e:
+        print('element not found')
